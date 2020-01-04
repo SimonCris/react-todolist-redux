@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import TodoList from './components/todolist';
+import MyTodoList from './containers/my_todo_list';
 import Header from './components/header';
 import AddTodo from './components/addtodo';
 
@@ -15,7 +15,7 @@ class App extends Component {
             <div className="App">
                 <Header/>
                 <AddTodo/>
-                <TodoList todos={[]}/>
+                <MyTodoList/>
             </div>
         );
     }

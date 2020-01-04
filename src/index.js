@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {createStore} from "redux";
+import {Provider} from 'react-redux';
 import storeReducer from './reducers/store_reducer';
 
 const initTodos = [
@@ -19,7 +20,15 @@ const initTodos = [
  * Tramite getState possiamo recuperare lo stato corrente dell'applicazione*/
 const store = createStore(storeReducer, {todos: [...initTodos]});
 
-ReactDOM.render(<App />, document.getElementById('root'));
+/** Il componente provider di React-Redux si occupa di passare automaticamente
+ * lo store a tutti i componenti dell'applicazione che sono racchiusi nel tag <Provider>.
+ * I singoli componenti (generalmente containers) che usato componenti che fanno riferimento
+ * allo store, utilizzano il metodo connect di react-redux per collegare lo store al
+ * componente che si vuole usare*/
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
