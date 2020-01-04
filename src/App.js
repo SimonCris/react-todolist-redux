@@ -16,6 +16,14 @@ function reducers(state = {}, action) {
                 ]
             };
 
+        case 'REMOVE_TODO':
+            return {
+                todos: [
+                    ...state.todos.slice(0, action.indexToRemove),
+                    ...state.todos.slice(action.indexToRemove + 1)
+                ]
+            };
+
         default:
             return {...state};
     }
@@ -61,6 +69,7 @@ class App extends Component {
 
     addToDo = () => {
         const newTodoValue = this.todoInputRef.current.value;
+        this.todoInputRef.current.value = '';
         /** Tramite il metodo dispatch dello store, vengono passati
          * alla funzione reducers dello store, l'azione (type) e il valore
          * (todoToAdd in questo caso) che intercetterà l'action e aggiungerà
@@ -68,6 +77,14 @@ class App extends Component {
         store.dispatch({
             type: 'ADD_TODO',
             todoToAdd: newTodoValue
+        })
+    };
+
+    removeToDo = (toDoIndex) => {
+        console.log('index -> ' + toDoIndex);
+        store.dispatch({
+            type: 'REMOVE_TODO',
+            indexToRemove: toDoIndex
         })
     };
 
@@ -85,7 +102,8 @@ class App extends Component {
                     <ul>
                         {
                             this.state.todos.map((todo, index) => {
-                                return <li key={index}>{todo}</li>
+                                return <li key={index}>{todo}<button
+                                onClick={this.removeToDo.bind(null, index)}>-</button></li>
                             })
                         }
                     </ul>
