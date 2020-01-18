@@ -1,7 +1,12 @@
 import React from 'react';
 
-function todo(props) {
-    return <li>{props.todo}<button>-</button></li>
+function todo({todo, onClick, id}) {
+    return <li>{todo}<button onClick= {() => {
+        {
+            onClick(id)
+        }
+    }
+    }>-</button></li>
 
 }
 

@@ -1,5 +1,6 @@
 import TodoList from '../components/todolist';
 import {connect} from "react-redux";
+import {removeToDo} from "../actions";
 
 /** Questo metodo serve per restituire parte dello state dell'applicazione
  * a partire dallo state memorizzato nello store globale */
@@ -11,12 +12,10 @@ const mapStateFromProps = (state) => {
     }
 };
 
-/** La funzione connect di React-Redux unisce automaticamente lo store al componente che
- * utilizza lo state dello store (in questo caso TodoList preleva l'array
- * todos dallo store globale).
- * Nei componenti di visualizzazione, va usato il container MyTodoList
- * per visualizzare il componente TodoList con i valori dello store globale*/
-const myConnect = connect(mapStateFromProps);
-const myTodoList = myConnect(TodoList);
+/** Connect collega lo store al componente addtodo e passa un oggetto con tutte le azioni che saranno usate
+ * nel componente */
+const actionsToSendInConnect = {
+    removeToDo: removeToDo
+};
+export default connect(mapStateFromProps, actionsToSendInConnect )(TodoList);
 
-export default myTodoList;
