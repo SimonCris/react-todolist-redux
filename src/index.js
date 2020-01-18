@@ -22,7 +22,7 @@ const store = createStore(storeReducer, {todos: [...initTodos]});
 
 /** Il componente provider di React-Redux si occupa di passare automaticamente
  * lo store a tutti i componenti dell'applicazione che sono racchiusi nel tag <Provider>.
- * I singoli componenti (generalmente containers) che usato componenti che fanno riferimento
+ * I singoli componenti (generalmente containers) che usano componenti che fanno riferimento
  * allo store, utilizzano il metodo connect di react-redux per collegare lo store al
  * componente che si vuole usare*/
 ReactDOM.render(

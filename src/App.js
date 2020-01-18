@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import MyTodoList from './containers/my_todo_list';
 import Header from './components/header';
-import AddTodo from './components/addtodo';
+import MyAddTodo from './containers/addNewTodo';
 
 class App extends Component {
 
@@ -14,7 +14,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header/>
-                <AddTodo/>
+                <MyAddTodo/>
                 <MyTodoList/>
             </div>
         );

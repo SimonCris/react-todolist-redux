@@ -1,10 +1,20 @@
 import React from 'react';
 
-function addToDo(props) {
+function addToDoComponent({addToDo}) {
+
+    /** Memorizza il valore dell'input */
+    let inputValue;
+
+    // Dispatch chiama il metodo addToDo presente all'interno di index.js
     return <div>
-        <input ref={props.todoInputRef} />
-        <button onClick={props.addToDo}>Add</button>
+        <input ref = { val => {inputValue = val} } />
+        <button onClick = {
+            () => {
+                addToDo(inputValue.value);
+                inputValue.value = '';
+            }
+        }>Add</button>
     </div>
 }
 
-export default addToDo;
+export default addToDoComponent;
