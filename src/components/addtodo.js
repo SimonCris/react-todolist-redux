@@ -7,7 +7,16 @@ function addToDoComponent({addToDo}) {
 
     // Dispatch chiama il metodo addToDo presente all'interno di index.js
     return <div>
-        <input ref = { val => {inputValue = val} } />
+        <input
+            onKeyUp={
+                (event) => {
+                    if (+event.keyCode == 13) {
+                        addToDo(inputValue.value);
+                        inputValue.value = '';
+                    }
+                }
+            }
+            ref = { val => {inputValue = val} } />
         <button onClick = {
             () => {
                 addToDo(inputValue.value);

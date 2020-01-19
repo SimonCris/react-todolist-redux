@@ -38,6 +38,7 @@
 }
 
 ul {
+  list-style-type: none;
   padding: 0;
   width: 400px;
   margin: 20px auto;
@@ -45,4 +46,23 @@ ul {
 
 li {
   text-align: left;
+  border-bottom: 1px solid #dddddd;
+  padding: 1px;
+  cursor: pointer;
+  min-width: 250px;
 }
+
+li:hover:after {
+  content: '\02A2F';
+  color: red;
+  font-size: 18px;
+  float: right;
+  margin-right: 5px;
+}
+
+li span:after {
+  content: '\025A1';
+  font-size: 28px;
+  padding: 4px;
+}
+

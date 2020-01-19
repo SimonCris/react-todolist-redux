@@ -1,12 +1,13 @@
 import React from 'react';
 
 function todo({todo, onClick, id}) {
-    return <li>{todo}<button onClick= {() => {
-        {
-            onClick(id)
+    return <li onClick= {() => {
+        onClick(id)
         }
-    }
-    }>-</button></li>
+     }>
+     <span></span>
+     {todo}
+    </li>
 
 }
 
