@@ -60,9 +60,20 @@ li:hover:after {
   margin-right: 5px;
 }
 
-li span:after {
+li.completed {
+  text-decoration: line-through;
+}
+
+li span.uncompleted:after {
   content: '\025A1';
   font-size: 28px;
   padding: 4px;
+}
+
+li span.completed:after {
+  content: '\02713';
+  font-size: 28px;
+  padding: 4px;
+  color: green;
 }
 

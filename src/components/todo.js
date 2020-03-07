@@ -1,12 +1,12 @@
 import React from 'react';
 
-function todo({todo, onClick, id}) {
-    return <li onClick= {() => {
+function todo({todoItem, onClick, id}) {
+    return <li className={todoItem.completed ? 'completed ' : ''} onClick= {() => {
         onClick(id)
         }
      }>
-     <span></span>
-     {todo}
+     <span className={todoItem.completed ? 'completed ' : 'uncompleted'}></span>
+     {todoItem.todo}
     </li>
 
 }

@@ -7,18 +7,32 @@ import {createStore} from "redux";
 import {Provider} from 'react-redux';
 import storeReducer from './reducers/store_reducer';
 
-const initTodos = [
-    'Fare la spesa',
-    'Fare i compiti',
-    'Chiamare a casa'
-];
+const initTodos = {
+    todos: [
+        {
+            id: 0,
+            todo: 'Fare la spesa',
+            completed: false
+        },
+        {
+            id: 1,
+            todo: 'Fare i compiti',
+            completed: true
+        },
+        {
+            id: 2,
+            todo: 'Chiamare la mamma',
+            completed: false
+        }
+    ]
+};
 
 /** Tramite il metodo createStore viene creato uno stato dell'applicazione.
  * Il metodo prende in input la funzione reducers, in modo che venga restituito
  * uno stato specifico in funzione dell'azione e lo stato iniziale, in questo caso
  * l'array initTodos.
  * Tramite getState possiamo recuperare lo stato corrente dell'applicazione*/
-const store = createStore(storeReducer, {todos: [...initTodos]});
+const store = createStore(storeReducer, {todos: [...initTodos.todos]});
 
 /** Il componente provider di React-Redux si occupa di passare automaticamente
  * lo store a tutti i componenti dell'applicazione che sono racchiusi nel tag <Provider>.
