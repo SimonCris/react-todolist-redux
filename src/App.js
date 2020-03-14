@@ -3,7 +3,7 @@ import './App.css';
 import MyTodoList from './containers/my_todo_list';
 import Header from './components/header';
 import MyAddTodo from './containers/addNewTodo';
-import TodoListFooter from './components/todoListFooter';
+import FooterLinkContainer from './containers/footerLinkContainer';
 
 /** Bootstrap */
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,7 +20,7 @@ class App extends Component {
                 <Header/>
                 <MyAddTodo/>
                 <MyTodoList/>
-                <TodoListFooter/>
+                <FooterLinkContainer/>
             </div>
         );
     }

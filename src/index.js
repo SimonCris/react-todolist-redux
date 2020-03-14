@@ -24,7 +24,8 @@ const initTodos = {
             todo: 'Chiamare la mamma',
             completed: false
         }
-    ]
+    ],
+    activeFilter : 'ALL'
 };
 
 /** Tramite il metodo createStore viene creato uno stato dell'applicazione.
@@ -33,6 +34,9 @@ const initTodos = {
  * l'array initTodos.
  * Tramite getState possiamo recuperare lo stato corrente dell'applicazione*/
 const store = createStore(storeReducer, {todos: [...initTodos.todos]});
+
+/** Ogni volta che cambia lo stato viene stampato in console */
+store.subscribe(() => {console.log(store.getState())});
 
 /** Il componente provider di React-Redux si occupa di passare automaticamente
  * lo store a tutti i componenti dell'applicazione che sono racchiusi nel tag <Provider>.

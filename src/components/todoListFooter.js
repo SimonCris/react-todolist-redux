@@ -1,17 +1,17 @@
 import React from 'react';
 import FooterLink from "./filterLink";
 
-function todoListFooter() {
+function todoListFooter({filterToDo}) {
     return <div>
-            <FooterLink actionType="ALL">
+            <FooterLink actionType="ALL" onFilterClick={filterToDo} >
                 ALL
             </FooterLink>
             {' '}
-            <FooterLink actionType="TO DO">
+            <FooterLink actionType="TO DO" onFilterClick={filterToDo}>
                 TO DO
             </FooterLink>
             {' '}
-            <FooterLink actionType="COMPLETED">
+            <FooterLink actionType="COMPLETED" onFilterClick={filterToDo}>
                 COMPLETED
             </FooterLink>
         </div>

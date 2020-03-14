@@ -26,3 +26,11 @@ export const toggleToDo = (toDoIndex) => {
         id: toDoIndex
     }
 };
+
+/** imposta un filtro sui todo (ALL, COMPLETED, TODO) */
+export const filterToDo = (filter = 'ALL') => {
+    return {
+        type: 'SET_FILTER',
+        activeFilter: filter
+    }
+};

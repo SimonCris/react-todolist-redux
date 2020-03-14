@@ -46,6 +46,12 @@ function storeReducer(state = {}, action) {
                     })
             };
 
+        case 'SET_FILTER':
+            return {
+                ...state,
+                activeFilter: action.activeFilter
+            };
+
         default:
             return {...state};
     }
