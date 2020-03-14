@@ -1,13 +1,13 @@
 import React from 'react';
 import Todo from './todo';
 
-function todolist({todos, removeToDo}) {
+function todolist({todos, removeToDo, toggleToDo}) {
 
     return <div>
         <ul>
         {
-            todos.map((todo, index) => {
-                return <Todo id={index} key={index} onClick={removeToDo} todoItem={todo}/>
+            todos.map((todo) => {
+                return <Todo id={todo.id} key={todo.id} onClick={toggleToDo} todoItem={todo}/>
             })
         }
         </ul>
