@@ -7,7 +7,7 @@ import {createStore} from "redux";
 import {Provider} from 'react-redux';
 import storeReducer from './reducers/store_reducer';
 
-const initTodos = {
+let initTodos = {
     todos: [
         {
             id: 0,
@@ -28,15 +28,29 @@ const initTodos = {
     activeFilter : 'ALL'
 };
 
+/** Prima di inizializzare lo stato dell'applicazione viene effettuato un check
+ * nella localstorage del browser e se esiste uno stato precedentemente salvato
+ * viene recuperato e ripristinato come stato corrente*/
+if (localStorage.getItem('todoListAppStatus')) {
+    const stateFromLocalStorage = JSON.parse(localStorage.getItem('todoListAppStatus'));
+    if (stateFromLocalStorage) {
+        initTodos = stateFromLocalStorage;
+    }
+}
+
+
 /** Tramite il metodo createStore viene creato uno stato dell'applicazione.
  * Il metodo prende in input la funzione reducers, in modo che venga restituito
  * uno stato specifico in funzione dell'azione e lo stato iniziale, in questo caso
  * l'array initTodos.
  * Tramite getState possiamo recuperare lo stato corrente dell'applicazione*/
-const store = createStore(storeReducer, {todos: [...initTodos.todos]});
+const store = createStore(storeReducer, {...initTodos});
 
-/** Ogni volta che cambia lo stato viene stampato in console */
-store.subscribe(() => {console.log(store.getState())});
+/** Ogni volta che cambia lo stato viene salvato nella localStorage del browser */
+store.subscribe(() => {
+    const currentState = JSON.stringify(store.getState());
+    localStorage.setItem('todoListAppStatus', currentState);
+});
 
 /** Il componente provider di React-Redux si occupa di passare automaticamente
  * lo store a tutti i componenti dell'applicazione che sono racchiusi nel tag <Provider>.

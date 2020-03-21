@@ -13,7 +13,9 @@ function storeReducer(state = {}, action) {
     switch (action.type) {
         case 'ADD_TODO':
             return {
-                todos : [
+                ...state, // viene eseguito lo spread dello stato che recupera tutti i campi
+                activeFilter: 'TO DO',
+                todos : [ // sovrascrive solo l'array di todos
                     {
                         id: state.todos.length,
                         todo: action.todoToAdd.text,
@@ -25,6 +27,7 @@ function storeReducer(state = {}, action) {
 
         case 'REMOVE_TODO':
             return {
+                ...state, // viene eseguito lo spread dello stato che recupera tutti i campi
                 todos: [
                     ...state.todos.slice(0, action.indexToRemove),
                     ...state.todos.slice(action.indexToRemove + 1)
@@ -33,6 +36,7 @@ function storeReducer(state = {}, action) {
 
         case 'TOGGLE_TODO':
             return {
+                ...state, // viene eseguito lo spread dello stato che recupera tutti i campi
                 todos:
                     state.todos.map(todo => {
                         /** Cambio il campo COMPLETED solo nel caso dell'oggetto che ha l'id passato in input */

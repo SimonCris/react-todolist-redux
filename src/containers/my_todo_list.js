@@ -6,9 +6,28 @@ import {removeToDo, toggleToDo} from "../actions";
  * a partire dallo state memorizzato nello store globale */
 const mapStateFromProps = (state) => {
     return {
-        todos: [
-            ...state.todos
-        ]
+        todos: filterTodos(state)
+    }
+};
+
+/** Restituisce i TODO in funzione del filtro settato */
+const filterTodos = (state)  => {
+    switch (state.activeFilter) {
+        case "ALL":
+            return state.todos.filter(todo => {
+                return todo;
+            });
+
+        case 'TO DO':
+            return state.todos.filter(todo => {
+               return !todo.completed
+            });
+
+        case 'COMPLETED':
+            return state.todos.filter(todo => {
+                return todo.completed
+            });
+
     }
 };
 
