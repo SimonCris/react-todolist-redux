@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import {Provider} from 'react-redux';
 import storeReducer from './reducers/store_reducer';
+import reduxLogger from 'redux-logger';
 
 let initTodos = {
     todos: [
@@ -38,13 +39,34 @@ if (localStorage.getItem('todoListAppStatus')) {
     }
 }
 
+/** Un middleware è una funzione che si frappone nella dispatch delle azioni e può essere
+ * recuperato lo stato dello store prima e dopo la chiamata ad un'azione. Dopo che viene eseguita
+ * l'azione lo stato può essere modificato e può essere ritornato un result.
+ *
+ * Param. getstate e dispatch vengono recuperati automaticamente dallo store
+ *        next è relativa al prossimo middleware che viene passato allo store e chiamato (ad es. se non viene generato
+ *             nessun next(action), il middleware successivo non partirà e si interromperà il flusso dei middleware)
+ *        action è relativa all'azione che viene eseguita dalla dispatch*/
+const loggerMiddleware = ({getState, dispatch}) => next => action => {
+    console.log("PRIMO");
+    let result = next(action);
+    return result;
+};
+
+const loggerMiddleware2 = ({getState, dispatch}) => next => action => {
+    console.log("SECONDO");
+    let result = next(action);
+    return result;
+};
 
 /** Tramite il metodo createStore viene creato uno stato dell'applicazione.
  * Il metodo prende in input la funzione reducers, in modo che venga restituito
- * uno stato specifico in funzione dell'azione e lo stato iniziale, in questo caso
- * l'array initTodos.
- * Tramite getState possiamo recuperare lo stato corrente dell'applicazione*/
-const store = createStore(storeReducer, {...initTodos});
+ * uno stato specifico in funzione dell'azione, lo stato iniziale, in questo caso
+ * l'array initTodos e i middleware che gestiranno le azioni chiamate nelle dispatch.
+ *
+ * Usiamo redux-logger per visualizzare i log su console relativi alle azioni che vengono eseguita dai vari
+ * middleware che vengono chiamati*/
+const store = createStore(storeReducer, {...initTodos}, applyMiddleware(reduxLogger));
 
 /** Ogni volta che cambia lo stato viene salvato nella localStorage del browser */
 store.subscribe(() => {
