@@ -56,6 +56,12 @@ function storeReducer(state = {}, action) {
                 activeFilter: action.activeFilter
             };
 
+        case 'GET_TODOS_FULFILLED':
+            return {
+                ...state,
+                todos: action.payload.data
+            };
+
         default:
             return {...state};
     }

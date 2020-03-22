@@ -1,4 +1,15 @@
+import axios from 'axios';
+import {GET_TODOS_URL} from "../config/conf";
+
 /** Azioni **/
+
+/** Recupero la lista di todos mediante una chiamata ad un servizio */
+export const getTodos = () => {
+    return {
+        type: 'GET_TODOS',
+        payload: axios.get(GET_TODOS_URL)
+    }
+};
 
 /** Aggiungo TODO */
 export const addToDo = (newTodoValue) => {

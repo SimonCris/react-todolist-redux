@@ -7,6 +7,8 @@ import {applyMiddleware, createStore} from "redux";
 import {Provider} from 'react-redux';
 import storeReducer from './reducers/store_reducer';
 import reduxLogger from 'redux-logger';
+import promise from 'redux-promise-middleware';
+import axios from 'axios';
 
 let initTodos = {
     todos: [
@@ -66,7 +68,7 @@ const loggerMiddleware2 = ({getState, dispatch}) => next => action => {
  *
  * Usiamo redux-logger per visualizzare i log su console relativi alle azioni che vengono eseguita dai vari
  * middleware che vengono chiamati*/
-const store = createStore(storeReducer, {...initTodos}, applyMiddleware(reduxLogger));
+const store = createStore(storeReducer, {...initTodos}, applyMiddleware(reduxLogger, promise));
 
 /** Ogni volta che cambia lo stato viene salvato nella localStorage del browser */
 store.subscribe(() => {

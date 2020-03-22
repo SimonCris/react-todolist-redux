@@ -7,11 +7,19 @@ import FooterLinkContainer from './containers/footerLinkContainer';
 
 /** Bootstrap */
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {connect} from "react-redux";
+import {getTodos} from "./actions";
 
 class App extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    /** onInit */
+    componentDidMount() {
+        /** recupera la lista tramite una chiamata ad un servizio */
+        this.props.getTodos();
     }
 
     render() {
@@ -26,4 +34,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect (null, {getTodos})(App);

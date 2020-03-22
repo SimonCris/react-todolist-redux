@@ -1,0 +1,3 @@
+/** FILE CHE CONTIENE CONFIGURAZIONI ED ENDPOINT A SERVIZI */
+
+export const GET_TODOS_URL = 'http://localhost:3004/todos';

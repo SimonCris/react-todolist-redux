@@ -12,7 +12,12 @@
     },
     {
       "id": 2,
-      "todo": "Chiamare la mamma",
+      "todo": "Andare al Supermercato",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "todo": "Stendere i panni",
       "completed": false
     }
   ]
