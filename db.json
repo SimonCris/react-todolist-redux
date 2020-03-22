@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": 0,
+      "todo": "Fare la spesa",
+      "completed": false
+    },
+    {
+      "id": 1,
+      "todo": "Fare i compiti",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "todo": "Chiamare la mamma",
+      "completed": false
+    }
+  ]
+}
