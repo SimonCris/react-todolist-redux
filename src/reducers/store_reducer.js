@@ -11,18 +11,14 @@ import React from 'react';
  * */
 function storeReducer(state = {}, action) {
     switch (action.type) {
-        case 'ADD_TODO':
+        case 'ADD_TODO_FULFILLED':
             return {
                 ...state, // viene eseguito lo spread dello stato che recupera tutti i campi
                 activeFilter: 'TO DO',
-                todos : [ // sovrascrive solo l'array di todos
-                    {
-                        id: state.todos.length,
-                        todo: action.todoToAdd.text,
-                        completed: action.todoToAdd.completed
-                    },
+                todos : [
+                    action.payload.data, // sovrascrive solo l'array di todos
                     ...state.todos
-                ]
+                    ]
             };
 
         case 'REMOVE_TODO':
@@ -34,26 +30,33 @@ function storeReducer(state = {}, action) {
                 ]
             };
 
-        case 'TOGGLE_TODO':
+        case 'TOGGLE_TODO_FULFILLED':
             return {
                 ...state, // viene eseguito lo spread dello stato che recupera tutti i campi
                 todos:
                     state.todos.map(todo => {
-                        /** Cambio il campo COMPLETED solo nel caso dell'oggetto che ha l'id passato in input */
-                        if(todo.id != action.id) {
+                        /** Se l'id è diverso da quello dell'oggetto modificato restituisco l'oggetto originale,
+                         * altrimenti prelevo l'oggetto modificato dalla payload della response */
+                        if(todo.id != action.payload.data.id) {
                             return todo;
                         }
                         return {
                             ...todo,
-                            completed: !todo.completed
+                            completed: action.payload.data.completed
                         }
                     })
             };
 
-        case 'SET_FILTER':
+        case 'SET_FILTER_FULFILLED':
             return {
                 ...state,
-                activeFilter: action.activeFilter
+                activeFilter: action.payload.data.filter
+            };
+
+        case 'GET_FILTER_FULFILLED':
+            return {
+                ...state,
+                activeFilter: action.payload.data.filter
             };
 
         case 'GET_TODOS_FULFILLED':

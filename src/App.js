@@ -8,7 +8,7 @@ import FooterLinkContainer from './containers/footerLinkContainer';
 /** Bootstrap */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {connect} from "react-redux";
-import {getTodos} from "./actions";
+import {getTodos, getFilter} from "./actions";
 
 class App extends Component {
 
@@ -18,8 +18,9 @@ class App extends Component {
 
     /** onInit */
     componentDidMount() {
-        /** recupera la lista tramite una chiamata ad un servizio */
+        /** recupera la lista dei todos e il filtro tramite chiamate a due servizi differenti */
         this.props.getTodos();
+        this.props.getFilter();
     }
 
     render() {
@@ -34,4 +35,4 @@ class App extends Component {
     }
 }
 
-export default connect (null, {getTodos})(App);
+export default connect (null, {getTodos, getFilter})(App);

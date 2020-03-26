@@ -1,14 +1,17 @@
 {
+  "activeFilter": {
+    "filter": "TO DO"
+  },
   "todos": [
     {
       "id": 0,
       "todo": "Fare la spesa",
-      "completed": false
+      "completed": true
     },
     {
       "id": 1,
       "todo": "Fare i compiti",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
@@ -19,6 +22,21 @@
       "id": 3,
       "todo": "Stendere i panni",
       "completed": false
+    },
+    {
+      "todo": "Andare in farmacia",
+      "completed": true,
+      "id": 4
+    },
+    {
+      "todo": "Prova test",
+      "completed": true,
+      "id": 5
+    },
+    {
+      "todo": "Andare dal benzinaio",
+      "completed": false,
+      "id": 6
     }
   ]
 }
